@@ -1,0 +1,9 @@
+@font-face {
+  font-family: nordica;
+  src: url('fonts/NordicaHairline.otf');
+}
+
+body {
+  background-color: #eee;
+  font-family: nordica;
+}
