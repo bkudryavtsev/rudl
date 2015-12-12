@@ -7,3 +7,16 @@ body {
   background-color: #eee;
   font-family: nordica;
 }
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container h1 {
+  color: #555;
+}
