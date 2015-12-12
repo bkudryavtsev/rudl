@@ -20,3 +20,15 @@ body {
 .container h1 {
   color: #555;
 }
+
+#direction h1 {
+  font-size: 4em;
+}
+
+#countdown {
+  padding-bottom: 16px;
+}
+
+#countdown h1 {
+  font-size: 2.5em;
+}
