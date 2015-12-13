@@ -41,3 +41,11 @@ body {
 #score h1 {
   font-size: 3em;
 }
+
+#restart-message {
+  display: none;
+}
+
+#restart-message h1 {
+  font-size: 1em;
+}

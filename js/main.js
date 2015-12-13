@@ -25,6 +25,26 @@ $(function () {
       displayCount(countdown);
       counter = setInterval(timer, 10); // start countdown (refresh every 10 ms)
     }
+
+    // space to restart
+    if (game_over && e.keyCode == 32) {
+      game_over = false;
+
+      clearInterval(counter);
+      countdown = initial; // reset countdown
+      displayCount(countdown);
+
+      direction = directions[Math.floor(Math.random() * directions.length)];
+      $("#direction").html("<h1>" + direction + "</h1>");
+
+      function display_game () {
+        $("#direction").fadeIn(500);
+        $("#countdown").fadeIn(500);
+      }
+
+      $("#score").fadeOut(500, display_game);
+      $("#restart-message").fadeOut(500, display_game);
+    }
   });
 });
 
@@ -35,11 +55,14 @@ function timer() {
 
     game_over = true;
 
-    $("#direction").fadeOut(500);
-    $("#countdown").fadeOut(500);
+    function display_score () {
+      $("#score").html("<h1>score: " + score + "</h1>");
+      $("#score").fadeIn(500);
+      $("#restart-message").fadeIn(500);
+    }
 
-    $("#score").html("<h1>score: " + score + "</h1>");
-    $("#score").fadeIn(500);
+    $("#direction").fadeOut(500, display_score);
+    $("#countdown").fadeOut(500, display_score);
 
     return;
   }
