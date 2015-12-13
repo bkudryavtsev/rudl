@@ -2,7 +2,7 @@ var directions = ["up", "down", "left", "right"];
 var keycodes = {"up": 38, "down": 40, "left": 37, "right": 39};
 var direction = directions[Math.floor(Math.random() * directions.length)];
 
-var game_on = true;
+var game_over = false;
 var score = 0;
 
 var initial = 100;
@@ -14,7 +14,7 @@ $("#direction").html("<h1>" + direction + "</h1>");
 
 $(function () {
   $(document).keyup(function (e) {
-    if(game_on && e.keyCode == keycodes[direction]) {
+    if(!game_over && e.keyCode == keycodes[direction]) {
       score++;
 
       direction = directions[Math.floor(Math.random() * directions.length)];
@@ -33,7 +33,7 @@ function timer() {
   if (countdown <= 0) {
     clearInterval(counter);
 
-    game_on = false;
+    game_over = true;
 
     $("#direction").fadeOut(500);
     $("#countdown").fadeOut(500);
