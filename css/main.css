@@ -32,3 +32,11 @@ body {
 #countdown h1 {
   font-size: 2.5em;
 }
+
+#score {
+  display: none;
+}
+
+#score h1 {
+  font-size: 3em;
+}
