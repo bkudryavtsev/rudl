@@ -5,6 +5,10 @@ var direction = directions[Math.floor(Math.random() * directions.length)];
 var game_on = true;
 var score = 0;
 
+var initial = 100;
+var countdown = initial;
+var counter;
+
 // set initial direction
 $("#direction").html("<h1>" + direction + "</h1>");
 
@@ -13,22 +17,20 @@ $(function () {
     if(game_on && e.keyCode == keycodes[direction]) {
       score++;
 
-      clearInterval(counter);
-      counter = setInterval(timer, 10); // 10 will run the timer every 100th of a second
-
       direction = directions[Math.floor(Math.random() * directions.length)];
       $("#direction").html("<h1>" + direction + "</h1>");
+
+      clearInterval(counter);
+      countdown = initial; // reset countdown
+      displayCount(countdown);
+      counter = setInterval(timer, 10); // start countdown (refresh every 10 ms)
     }
   });
 });
 
 // countdown timer ------------------------
-var initial = 1600; // ms
-var count = initial;
-var counter;
-
 function timer() {
-    if (count <= 0) {
+    if (countdown <= 0) {
         clearInterval(counter);
 
         game_on = false;
@@ -41,13 +43,13 @@ function timer() {
 
         return;
     }
-    count--;
-    displayCount(count);
+    countdown--;
+    displayCount(countdown);
 }
 
-function displayCount(count) {
-    var res = count / 100;
-    $("#countdown").html("<h1>" + res.toPrecision(count.toString().length) + "</h1>");
+function displayCount(countdown) {
+    var res = countdown / 100;
+    $("#countdown").html("<h1>" + res.toPrecision(countdown.toString().length) + "</h1>");
 }
 
 displayCount(initial);
