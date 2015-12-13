@@ -30,26 +30,26 @@ $(function () {
 
 // countdown timer ------------------------
 function timer() {
-    if (countdown <= 0) {
-        clearInterval(counter);
+  if (countdown <= 0) {
+    clearInterval(counter);
 
-        game_on = false;
+    game_on = false;
 
-        $("#direction").fadeOut(500);
-        $("#countdown").fadeOut(500);
+    $("#direction").fadeOut(500);
+    $("#countdown").fadeOut(500);
 
-        $("#score").html("<h1>score: " + score + "</h1>");
-        $("#score").fadeIn(500);
+    $("#score").html("<h1>score: " + score + "</h1>");
+    $("#score").fadeIn(500);
 
-        return;
-    }
-    countdown--;
-    displayCount(countdown);
+    return;
+  }
+  countdown--;
+  displayCount(countdown);
 }
 
 function displayCount(countdown) {
-    var res = countdown / 100;
-    $("#countdown").html("<h1>" + res.toPrecision(countdown.toString().length) + "</h1>");
+  var res = countdown / 100;
+  $("#countdown").html("<h1>" + res.toPrecision(countdown.toString().length) + "</h1>");
 }
 
 displayCount(initial);
