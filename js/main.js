@@ -29,6 +29,7 @@ $(function () {
     // space to restart
     if (game_over && e.keyCode == 32) {
       game_over = false;
+      score = 0;
 
       clearInterval(counter);
       countdown = initial; // reset countdown
