@@ -11,10 +11,23 @@
 </head>
 <body>
   <div class="container">
-    <div id="countdown"></div>
-    <div id="score"></div>
-    <div id="restart-message"><h1>press space to restart<h1></div>
-    <div id="direction"></div>
+    <div id="title-container">
+      <div id="title">
+        <h1>rudl<br /><span>right up down left</span></h1>
+      </div>
+
+      <h2 class="pulsate">press space to begin</h2>
+    </div>
+
+    <div id="game-container">
+      <div id="countdown"></div>
+      <div id="direction"></div>
+    </div>
+
+    <div id="score-container">
+      <div id="score"></div>
+      <div id="restart-message" class="pulsate"><h1>press space to restart<h1></div>
+    </div>
   </div>
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>

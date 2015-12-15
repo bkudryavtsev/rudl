@@ -2,7 +2,8 @@ var directions = ["up", "down", "left", "right"];
 var keycodes = {"up": 38, "down": 40, "left": 37, "right": 39};
 var direction = directions[Math.floor(Math.random() * directions.length)];
 
-var game_over = false;
+var title = true;
+var game_over = true;
 var score = 0;
 
 var initial = 100;
@@ -14,7 +15,7 @@ $("#direction").html("<h1>" + direction + "</h1>");
 
 $(function () {
   $(document).keyup(function (e) {
-    if(!game_over && e.keyCode == keycodes[direction]) {
+    if(!title && !game_over && e.keyCode == keycodes[direction]) {
       score++;
 
       direction = directions[Math.floor(Math.random() * directions.length)];
@@ -27,7 +28,7 @@ $(function () {
     }
 
     // space to restart
-    if (game_over && e.keyCode == 32) {
+    if (!title && game_over && e.keyCode == 32) {
       game_over = false;
       score = 0;
 
@@ -39,12 +40,21 @@ $(function () {
       $("#direction").html("<h1>" + direction + "</h1>");
 
       function display_game () {
-        $("#direction").fadeIn(500);
-        $("#countdown").fadeIn(500);
+        $("#game-container").fadeIn(500);
       }
 
-      $("#score").fadeOut(500, display_game);
-      $("#restart-message").fadeOut(500, display_game);
+      $("#score-container").fadeOut(500, display_game);
+    }
+
+    if (title && game_over && e.keyCode == 32) {
+      function display_game () {
+        $("#game-container").fadeIn(500);
+      }
+
+      $("#title-container").fadeOut(500, display_game);
+
+      title = false;
+      game_over = false;
     }
   });
 });
@@ -58,12 +68,10 @@ function timer() {
 
     function display_score () {
       $("#score").html("<h1>score: " + score + "</h1>");
-      $("#score").fadeIn(500);
-      $("#restart-message").fadeIn(500);
+      $("#score-container").fadeIn(500);
     }
 
-    $("#direction").fadeOut(500, display_score);
-    $("#countdown").fadeOut(500, display_score);
+    $("#game-container").fadeOut(500, display_score);
 
     return;
   }

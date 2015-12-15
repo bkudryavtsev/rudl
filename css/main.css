@@ -17,8 +17,58 @@ body {
   text-align: center;
 }
 
-.container h1 {
+.container h1, h2 {
   color: #555;
+}
+
+.pulsate {
+  -webkit-animation: fade 1.25s infinite alternate;
+  -moz-animation: fade 1.25s infinite alternate;
+  -ms-animation: fade 1.25s infinite alternate;
+  -o-animation: fade 1.25s infinite alternate;
+  animation: fade 1.25s infinite alternate;
+}
+
+@-webkit-keyframes fade {
+ from { opacity: 1; }
+ to { opacity: 0.5; }
+}
+
+@-moz-keyframes fade {
+ from { opacity: 1; }
+ to { opacity: 0.5; }
+}
+
+@-ms-keyframes fade {
+ from { opacity: 1; }
+ to { opacity: 0.5; }
+}
+
+@-o-keyframes fade {
+ from { opacity: 1; }
+ to { opacity: 0.5; }
+}
+
+@keyframes fade {
+ from { opacity: 1; }
+ to { opacity: 0.5; }
+}
+
+#title h1 {
+  font-size: 5em;
+  line-height: 0.4;
+}
+
+#title span {
+  font-size: 25%;
+}
+
+#title h2 {
+  font-size: 3em;
+}
+
+#game-container {
+  display: none;
 }
 
 #direction h1 {
@@ -34,7 +84,7 @@ body {
   color: #e74c3c;
 }
 
-#score {
+#score-container {
   display: none;
 }
 
@@ -42,10 +92,6 @@ body {
   font-size: 3em;
 }
 
-#restart-message {
-  display: none;
-}
-
 #restart-message h1 {
-  font-size: 1em;
+  font-size: 1.25em;
 }
