@@ -39,18 +39,10 @@ $(function () {
       direction = directions[Math.floor(Math.random() * directions.length)];
       $("#direction").html("<h1>" + direction + "</h1>");
 
-      function display_game () {
-        $("#game-container").fadeIn(500);
-      }
-
       $("#score-container").fadeOut(500, display_game);
     }
 
     if (title && game_over && e.keyCode == 32) {
-      function display_game () {
-        $("#game-container").fadeIn(500);
-      }
-
       $("#title-container").fadeOut(500, display_game);
 
       title = false;
@@ -59,17 +51,21 @@ $(function () {
   });
 });
 
+function display_game () {
+  $("#game-container").fadeIn(500);
+}
+
+function display_score () {
+  $("#score").html("<h1>score: " + score + "</h1>");
+  $("#score-container").fadeIn(500);
+}
+
 // countdown timer ------------------------
 function timer() {
   if (countdown <= 0) {
     clearInterval(counter);
 
     game_over = true;
-
-    function display_score () {
-      $("#score").html("<h1>score: " + score + "</h1>");
-      $("#score-container").fadeIn(500);
-    }
 
     $("#game-container").fadeOut(500, display_score);
 
