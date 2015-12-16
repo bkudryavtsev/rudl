@@ -25,6 +25,12 @@ $(function () {
       countdown = initial; // reset countdown
       displayCount(countdown);
       counter = setInterval(timer, 10); // start countdown (refresh every 10 ms)
+    } else if(!title && !game_over && e.keyCode != keycodes[direction]) {
+      clearInterval(counter);
+      countdown = 0; // end game
+      counter = setInterval(timer, 10);
+
+      game_over = true;
     }
 
     // space to restart
