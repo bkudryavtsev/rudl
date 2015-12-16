@@ -31,27 +31,27 @@ body {
 
 @-webkit-keyframes fade {
  from { opacity: 1; }
- to { opacity: 0.5; }
+ to { opacity: 0.75; }
 }
 
 @-moz-keyframes fade {
  from { opacity: 1; }
- to { opacity: 0.5; }
+ to { opacity: 0.75; }
 }
 
 @-ms-keyframes fade {
  from { opacity: 1; }
- to { opacity: 0.5; }
+ to { opacity: 0.75; }
 }
 
 @-o-keyframes fade {
  from { opacity: 1; }
- to { opacity: 0.5; }
+ to { opacity: 0.75; }
 }
 
 @keyframes fade {
  from { opacity: 1; }
- to { opacity: 0.5; }
+ to { opacity: 0.75; }
 }
 
 #title h1 {
@@ -64,11 +64,15 @@ body {
 }
 
 #title-container h2 {
-  font-size: 1.3em;
+  font-size: 1.5em;
 }
 
 #game-container {
   display: none;
+}
+
+#game-container h2 {
+  font-size: 1.5em;
 }
 
 #direction h1 {
