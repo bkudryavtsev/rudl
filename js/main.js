@@ -1,8 +1,11 @@
 var directions = ["up", "down", "left", "right"];
-var keycodes = {"up": 38, "down": 40, "left": 37, "right": 39};
-var direction = directions[Math.floor(Math.random() * directions.length)];
+var max_direction_idx = directions.length - 1;
+var min_direction_idx = 0;
+var direction_idx = 0;
+var last_direction_idx = direction_idx;
 
-var title = true;
+var keycodes = {"up": 38, "down": 40, "left": 37, "right": 39};
+
 var game_over = true;
 var score = 0;
 
@@ -10,22 +13,23 @@ var initial = 100;
 var countdown = initial;
 var counter;
 
-// set initial direction
-$("#direction").html("<h1>" + direction + "</h1>");
-
 $(function () {
   $(document).keyup(function (e) {
-    if(!title && !game_over && e.keyCode == keycodes[direction]) {
+    if(!game_over && e.keyCode == keycodes[directions[direction_idx]]) {
       score++;
 
-      direction = directions[Math.floor(Math.random() * directions.length)];
-      $("#direction").html("<h1>" + direction + "</h1>");
+      direction_idx = Math.floor(Math.random() * (max_direction_idx - min_direction_idx)) + min_direction_idx;
+      // prevent repetition
+      if (direction_idx >= last_direction_idx) { direction_idx += 1 };
+      last_direction_idx = direction_idx;
+
+      $("#direction").html("<h1>" + directions[direction_idx] + "</h1>");
 
       clearInterval(counter);
       countdown = initial; // reset countdown
       displayCount(countdown);
       counter = setInterval(timer, 10); // start countdown (refresh every 10 ms)
-    } else if(!title && !game_over && e.keyCode != keycodes[direction]) {
+    } else if(!game_over && e.keyCode != keycodes[directions[direction_idx]]) {
       clearInterval(counter);
       countdown = 0; // end game
       counter = setInterval(timer, 10);
@@ -34,7 +38,7 @@ $(function () {
     }
 
     // space to restart
-    if (!title && game_over && e.keyCode == 32) {
+    if (game_over && e.keyCode == 32) {
       game_over = false;
       score = 0;
 
@@ -42,17 +46,17 @@ $(function () {
       countdown = initial; // reset countdown
       displayCount(countdown);
 
-      direction = directions[Math.floor(Math.random() * directions.length)];
-      $("#direction").html("<h1>" + direction + "</h1>");
+      direction_idx = Math.floor(Math.random() * (max_direction_idx - min_direction_idx)) + min_direction_idx;
+      // prevent repetition
+      if (direction_idx >= last_direction_idx) { direction_idx += 1 };
+      last_direction_idx = direction_idx;
+      $("#direction").html("<h1>" + directions[direction_idx] + "</h1>");
 
-      $("#score-container").fadeOut(500, display_game);
-    }
-
-    if (title && game_over && e.keyCode == 32) {
-      $("#title-container").fadeOut(500, display_game);
-
-      title = false;
-      game_over = false;
+      if ($("#title-container").is(":visible")) {
+        $("#title-container").fadeOut(500, display_game);
+      } else {
+        $("#score-container").fadeOut(500, display_game);
+      }
     }
   });
 });
