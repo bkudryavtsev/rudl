@@ -14,6 +14,10 @@ var countdown = initial;
 var counter;
 
 $(function () {
+  if (Cookies.get("highscore") === undefined) {
+    Cookies.set("highscore", "0");
+  }
+
   $(document).keyup(function (e) {
     if(!game_over && e.keyCode == keycodes[directions[direction_idx]]) {
       score++;
@@ -67,6 +71,7 @@ function display_game () {
 
 function display_score () {
   $("#score").html("<h1>score: " + score + "</h1>");
+  $("#highscore").html("<h1>high score: " + Cookies.get("highscore") + "</h1>");
   $("#score-container").fadeIn(500);
 }
 
@@ -76,6 +81,10 @@ function timer() {
     clearInterval(counter);
 
     game_over = true;
+
+    if (score > parseInt(Cookies.get("highscore"))) {
+      Cookies.set("highscore", score.toString());
+    }
 
     $("#game-container").fadeOut(500, display_score);
 
